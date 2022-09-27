@@ -7,6 +7,7 @@ import (
 
 func PlayerEnter() bool {
 	var playerChoice string
+
 	fmt.Print("Do you want to play in `21`? Write [yes] or [no].\n")
 	fmt.Scan(&playerChoice)
 

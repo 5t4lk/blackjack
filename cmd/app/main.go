@@ -15,6 +15,7 @@ func main() {
 	if checkAnswer != true {
 		log.Fatal("Unfortunately, you don't want to play.\n")
 	}
+
 	checkFirstCardPlayer, _ := dealFirstPlayerCard()
 	if checkFirstCardPlayer != true {
 		log.Fatal("error while dealing first player card\n")
@@ -68,6 +69,7 @@ func askPlayer() bool {
 		fmt.Print("[ADMIN] Incorrect input.\n")
 		os.Exit(0)
 	}
+
 	return true
 }
 
@@ -78,11 +80,13 @@ func botLogic() {
 			log.Fatal("error while bot playing")
 		}
 	}
+
 	grandFinal()
 }
 
 func grandFinal() {
 	fmt.Printf("[GAME] BOT's score is %d.\n", scoreBot)
+
 	if scorePlayer > scoreBot && scorePlayer <= 21 {
 		ui.Slow()
 		fmt.Printf("[GAME] You won! Enjoy!\n")
