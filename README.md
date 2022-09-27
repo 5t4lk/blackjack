@@ -1,17 +1,9 @@
 # Project objective
-> The aim of the project is to earn money, which is based on the instant purchase of skins with a lucrative offer. The project is currently in a low priority stage of development.
+> The aim of the project is to implement a gambling game called "Blackjack". The game is based on a deck of 36 cards (6-A). A player balance is introduced.
 # Installation
-> git clone https://github.com/5t4lk/waxpeer-parser
+> git clone https://github.com/5t4lk/blackjack
 # How to run
 > Write in console: `go run .\cmd\app\main.go`.
 # Functionality 
-> Once you have started the programme, it will automatically send requests to the website for updates. There are a number of conditions under which the programme works. The skin will only be displayed in the console if the discount on its purchase is higher than 20%. If a skin belongs to a special skin type, there are additional conditions for it and it will only appear in the console if the discount exceeds 70%. The program outputs to the console data in the following format: "Skin name - Offered price from user - Present price - Benefit in percentage". 
-# With the help of:
-```
-https://waxpeer.com
-https://api.waxpeer.com/docs
-http://csgobackpack.net
-http://csgobackpack.net/api
-```
-
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀![alt text](https://waxpeer.com/android-chrome-192x192.png)
+> Initially, a player is given $100.00 to balance. As he plays, the balance may change. A constant bet of $5.00 is introduced in the game. The player is given the choice of whether he wants to play - if the player agrees, the game begins. If the player does not agree, the game stops, the software shuts down and the player's balance reverts to the initial $100.00. Enjoy the game.
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀![alt text](https://bicyclecards.com/wp-content/uploads/2015/06/blackjack-news03.jpg)
