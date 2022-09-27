@@ -1,0 +1,1 @@
+module "github.com/5t4lk/blackjack"

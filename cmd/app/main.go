@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
+	"github.com/5t4lk/blackjack/internal/ui"
+	"github.com/5t4lk/blackjack/internal/ux"
 	"log"
-	"math/rand"
 	"os"
-	"time"
 )
 
-var scorePlayer, scoreBot int
+var scorePlayer, scoreBot = 0, 0
 
 func main() {
-	checkAnswer := playerEnter()
+	checkAnswer := ui.PlayerEnter()
 	if checkAnswer != true {
 		log.Fatal("Unfortunately, you don't want to play.\n")
 	}
@@ -29,40 +29,24 @@ func main() {
 		askPlayer()
 		if scorePlayer > 21 {
 			fmt.Print("[GAME] You have lost. Score is more than 21.\n")
-			slow()
+			ui.Slow()
 			break
 		} else if scorePlayer == 21 {
 			fmt.Print("[GAME] You won. BLACKJACK!\n")
-			slow()
+			ui.Slow()
 			break
 		}
 	}
 }
 
-func playerEnter() bool {
-	var playerChoice string
-	fmt.Print("Do you want to play in `21`? Write [yes] or [no].\n")
-	fmt.Scan(&playerChoice)
-
-	if playerChoice == "yes" {
-		fmt.Print("[GAME] You are started the game. Handing out cards!\n")
-		slow()
-		return true
-	} else if playerChoice == "no" {
-		return false
-	}
-
-	return false
-}
-
 func dealFirstBotCard() (bool, int) {
-	firstBotCard := dealCard()
+	firstBotCard := ux.DealCard()
 	showCardBot(firstBotCard)
 	return true, scoreBot
 }
 
 func dealFirstPlayerCard() (bool, int) {
-	firstPlayerCard := dealCard()
+	firstPlayerCard := ux.DealCard()
 	showCardPlayer(firstPlayerCard)
 	return true, scorePlayer
 }
@@ -71,12 +55,12 @@ func askPlayer() bool {
 	var choice int
 	fmt.Printf("[GAME] Your score is %d.\n1. Take one more card\n2. Throw cards.\n", scorePlayer)
 	fmt.Scan(&choice)
-	slow()
+
 	if choice == 1 {
 		dealFirstPlayerCard()
 	} else if choice == 2 {
 		fmt.Print("[GAME] You threw the cards.\n")
-		slow()
+		ui.Slow()
 		botLogic()
 		fmt.Printf("[GAME] Game is finished.\n")
 		os.Exit(0)
@@ -85,13 +69,6 @@ func askPlayer() bool {
 		os.Exit(0)
 	}
 	return true
-}
-
-func dealCard() int {
-	time.Sleep(1 * time.Millisecond)
-	rand.Seed(time.Now().UnixNano())
-	var card = rand.Intn(9)
-	return card
 }
 
 func botLogic() {
@@ -107,13 +84,13 @@ func botLogic() {
 func grandFinal() {
 	fmt.Printf("[GAME] BOT's score is %d.\n", scoreBot)
 	if scorePlayer > scoreBot && scorePlayer <= 21 {
-		slow()
+		ui.Slow()
 		fmt.Printf("[GAME] You won! Enjoy!\n")
 	} else if scorePlayer < scoreBot && scoreBot <= 21 {
-		slow()
+		ui.Slow()
 		fmt.Printf("[GAME] You lost! Next time be better!\n")
 	} else if scorePlayer == scoreBot {
-		slow()
+		ui.Slow()
 		fmt.Printf("[GAME] It's a draw!")
 	}
 }
@@ -149,6 +126,7 @@ func showCardPlayer(player int) {
 		scorePlayer = 11 + scorePlayer
 	}
 }
+
 func showCardBot(bot int) {
 	switch bot {
 	case 0:
@@ -178,15 +156,5 @@ func showCardBot(bot int) {
 	case 8:
 		fmt.Print("[GAME] BOT dealt a card A.\n")
 		scoreBot = 11 + scoreBot
-	}
-}
-
-func slow() {
-	for i := 0; i < 3; i++ {
-		time.Sleep(666 * time.Millisecond)
-		fmt.Print("* ")
-		if i == 2 {
-			fmt.Print("\n")
-		}
 	}
 }
