@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+	"os"
 	"time"
 )
 
@@ -17,6 +18,9 @@ func PlayerEnter() bool {
 		return true
 	} else if playerChoice == "no" {
 		return false
+	} else {
+		fmt.Print("[ADMIN] Incorrect input.\n")
+		os.Exit(0)
 	}
 
 	return false
