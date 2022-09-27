@@ -9,7 +9,7 @@ import (
 func PlayerEnter() bool {
 	var playerChoice string
 
-	fmt.Print("Do you want to play in `21`? Write [yes] or [no].\n")
+	fmt.Print("[ADMIN] Do you want to play in `21`? Write [yes] or [no].\n")
 	fmt.Scan(&playerChoice)
 
 	if playerChoice == "yes" {

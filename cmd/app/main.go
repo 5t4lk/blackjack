@@ -9,11 +9,21 @@ import (
 )
 
 var scorePlayer, scoreBot = 0, 0
+var User = ux.User{Balance: 100.00}
 
 func main() {
+	if check := checkBalance(User.Balance); check != true {
+		os.Exit(0)
+	}
+
+	scorePlayer, scoreBot = 0, 0
+
+	fmt.Printf("[ADMIN] Your balance is %.2f$.\n", User.Balance)
+
 	checkAnswer := ui.PlayerEnter()
 	if checkAnswer != true {
-		log.Fatal("Unfortunately, you don't want to play.\n")
+		fmt.Print("[ADMIN] Unfortunately, you don't want to play. Table is closed.\n")
+		os.Exit(0)
 	}
 
 	checkFirstCardPlayer, _ := dealFirstPlayerCard()
@@ -30,14 +40,24 @@ func main() {
 		askPlayer()
 		if scorePlayer > 21 {
 			fmt.Print("[GAME] You have lost. Score is more than 21.\n")
+			User.Lost()
 			ui.Slow()
-			break
+			main()
 		} else if scorePlayer == 21 {
 			fmt.Print("[GAME] You won. BLACKJACK!\n")
+			User.Won()
 			ui.Slow()
-			break
+			main()
 		}
 	}
+}
+
+func checkBalance(userBalance float64) bool {
+	if userBalance == 0 || userBalance < 0 {
+		fmt.Print("[ADMIN] You lost all money. Thanks for game.\n")
+		return false
+	}
+	return true
 }
 
 func dealFirstBotCard() (bool, int) {
@@ -63,11 +83,10 @@ func askPlayer() bool {
 		fmt.Print("[GAME] You threw the cards.\n")
 		ui.Slow()
 		botLogic()
-		fmt.Printf("[GAME] Game is finished.\n")
-		os.Exit(0)
 	} else {
 		fmt.Print("[ADMIN] Incorrect input.\n")
-		os.Exit(0)
+		ui.Slow()
+		main()
 	}
 
 	return true
@@ -90,12 +109,18 @@ func grandFinal() {
 	if scorePlayer > scoreBot && scorePlayer <= 21 {
 		ui.Slow()
 		fmt.Printf("[GAME] You won! Enjoy!\n")
+		User.Won()
+		main()
 	} else if scorePlayer < scoreBot && scoreBot <= 21 {
 		ui.Slow()
 		fmt.Printf("[GAME] You lost! Next time be better!\n")
+		User.Lost()
+		main()
 	} else if scorePlayer == scoreBot {
 		ui.Slow()
-		fmt.Printf("[GAME] It's a draw!")
+		fmt.Printf("[GAME] It's a draw!\n")
+		User.Draw()
+		main()
 	}
 }
 
