@@ -1,7 +1,7 @@
 # Project objective
 > The aim of the project is to implement a gambling game called "Blackjack". The game is based on a deck of 36 cards (6-A). A player balance is introduced.
 # Installation
-> git clone https://github.com/5t4lk/blackjack
+> Write in terminal: `git clone https://github.com/5t4lk/blackjack`
 # How to run
 > Write in console: `go run .\cmd\app\main.go`.
 # Description
