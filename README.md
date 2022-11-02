@@ -9,4 +9,3 @@
 # Stack
 - Golang
 - MongoDB
-![alt text](https://imageio.forbes.com/specials-images/dam/imageserve/1051931270/960x0.jpg?format=jpg&width=960)
