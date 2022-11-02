@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/5t4lk/blackjack/internal/authorization/signin"
 	"github.com/5t4lk/blackjack/internal/ui"
 	"github.com/5t4lk/blackjack/internal/ux"
 	"log"
@@ -9,28 +10,31 @@ import (
 )
 
 var scorePlayer, scoreBot = 0, 0
-var User = ux.User{}
+var UserCash = ux.UserCash{}
 
 func main() {
-	User.AskDeposit()
+	if err := signin.UserAuthorization(); err != nil {
+		log.Fatal(err)
+	}
+	UserCash.AskDeposit()
 	gameRunning()
 }
 
 func gameRunning() {
-	if check := checkBalance(User.Deposit); check != true {
+	if check := checkBalance(UserCash.Deposit); check != true {
 		os.Exit(0)
 	}
 
 	scorePlayer, scoreBot = 0, 0
 
-	fmt.Printf("[ADMIN] Your balance is %.2f$.\n", User.Deposit)
+	fmt.Printf("[ADMIN] Your balance is %.2f$.\n", UserCash.Deposit)
 
 	checkAnswer := ui.PlayerEnter()
 	if checkAnswer != true {
 		fmt.Print("[ADMIN] Unfortunately, you don't want to play. Table is closed.\n")
 		os.Exit(0)
 	}
-	User.AskBet()
+	UserCash.AskBet()
 
 	checkFirstCardPlayer, _ := dealFirstPlayerCard()
 	if checkFirstCardPlayer != true {
@@ -46,12 +50,12 @@ func gameRunning() {
 		askPlayer()
 		if scorePlayer > 21 {
 			fmt.Print("[GAME] You have lost. Score is more than 21.\n")
-			User.Lost()
+			UserCash.Lost()
 			ui.Slow()
 			gameRunning()
 		} else if scorePlayer == 21 {
 			fmt.Print("[GAME] You won. BLACKJACK!\n")
-			User.Won()
+			UserCash.Won()
 			ui.Slow()
 			gameRunning()
 		}
@@ -115,17 +119,17 @@ func grandFinal() {
 	if scorePlayer > scoreBot && scorePlayer <= 21 {
 		ui.Slow()
 		fmt.Printf("[GAME] You won! Enjoy!\n")
-		User.Won()
+		UserCash.Won()
 		gameRunning()
 	} else if scorePlayer < scoreBot && scoreBot <= 21 {
 		ui.Slow()
 		fmt.Printf("[GAME] You lost! Next time be better!\n")
-		User.Lost()
+		UserCash.Lost()
 		gameRunning()
 	} else if scorePlayer == scoreBot {
 		ui.Slow()
 		fmt.Printf("[GAME] It's a draw!\n")
-		User.Draw()
+		UserCash.Draw()
 		gameRunning()
 	}
 }

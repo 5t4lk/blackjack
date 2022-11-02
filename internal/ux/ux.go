@@ -7,24 +7,25 @@ import (
 	"time"
 )
 
-type User struct {
+type UserCash struct {
 	Bet     float64
 	Deposit float64
+	Balance float64
 }
 
-func (u *User) Won() {
+func (u *UserCash) Won() {
 	u.Deposit = u.Deposit + u.Bet
 }
 
-func (u *User) Lost() {
+func (u *UserCash) Lost() {
 	u.Deposit = u.Deposit - u.Bet
 }
 
-func (u *User) Draw() {
+func (u *UserCash) Draw() {
 	u.Deposit = u.Deposit - 0.75
 }
 
-func (u *User) AskDeposit() {
+func (u *UserCash) AskDeposit() {
 	fmt.Print("[ADMIN] Enter your deposit: \n")
 	fmt.Scan(&u.Deposit)
 	if u.Deposit < 0 {
@@ -33,7 +34,7 @@ func (u *User) AskDeposit() {
 	}
 }
 
-func (u *User) AskBet() {
+func (u *UserCash) AskBet() {
 	fmt.Print("[ADMIN] Enter your bet: \n")
 	fmt.Scan(&u.Bet)
 	if u.Bet <= 0 {
