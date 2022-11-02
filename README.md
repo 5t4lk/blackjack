@@ -9,4 +9,4 @@
 # Stack
 - Golang
 - MongoDB
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀![alt text](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.forbes.com%2Fsites%2Fjohnnavin%2F2018%2F04%2F01%2Finterview-with-a-blackjack-pro-i-still-win-playing-21-in-las-vegas%2F&psig=AOvVaw2Kr-ATdZjBlsLTQsPIpy0z&ust=1667482136841000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOi8p5XNj_sCFQAAAAAdAAAAABAE)
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀![alt text](https://imageio.forbes.com/specials-images/dam/imageserve/1051931270/960x0.jpg?format=jpg&width=960)
